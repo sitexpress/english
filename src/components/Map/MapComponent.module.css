@@ -1,0 +1,31 @@
+.title {
+    font-size: 24px;
+    font-weight: 900;
+
+    @media (max-width: $mantine-breakpoint-sm) {
+        font-size: 24px;
+    }
+}
+
+.description {
+    max-width: 600px;
+    margin: auto;
+
+    &::after {
+        content: "";
+        display: block;
+        /* background-color: var(--mantine-color-blue-filled); */
+        background-color: rgb(96, 109, 255);
+        width: 45px;
+        height: 2px;
+        margin-top: var(--mantine-spacing-sm);
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+.map_container {
+    @media (max-width: $mantine-breakpoint-sm) {
+        padding: 0;
+    }
+}

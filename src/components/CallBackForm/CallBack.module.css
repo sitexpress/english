@@ -1,0 +1,15 @@
+.btn {
+    font-size: var(--mantine-font-size-sm);
+    background: #feca1d;
+
+    &:not(:first-of-type) {
+        margin-left: var(--mantine-spacing-md);
+    }
+
+    @media (max-width: $mantine-breakpoint-xs) {
+        &:not(:first-of-type) {
+            margin-top: var(--mantine-spacing-md);
+            margin-left: 0;
+        }
+    }
+}

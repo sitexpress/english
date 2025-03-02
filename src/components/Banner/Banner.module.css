@@ -1,0 +1,46 @@
+.card {
+    /* height: 240px; */
+    height: 300px;
+    background-size: cover;
+    background-image: url("/images/img/8.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* @media (max-width: $mantine-breakpoint-md) {
+        height: 540px;
+    } */
+  }
+
+  .content {
+    position: absolute;
+    inset: 0;
+    padding: var(--mantine-spacing-xl);
+    z-index: 1;
+  }
+  
+  .action {
+    position: absolute;
+    bottom: var(--mantine-spacing-xl);
+    right: var(--mantine-spacing-xl);
+  }
+  
+  .title {
+    color: var(--mantine-color-white);
+    margin-bottom: calc(var(--mantine-spacing-xs) / 2);
+  }
+  
+  .description {
+    color: var(--mantine-color-white);
+    max-width: 450px;
+  }
+  
+  .overlay {
+    background-color: transparent;
+    background-image: linear-gradient(
+      105deg,
+      var(--mantine-color-black) 20%,
+      #312f2f 50%,
+      var(--mantine-color-gray-4) 100%
+    );
+  }
