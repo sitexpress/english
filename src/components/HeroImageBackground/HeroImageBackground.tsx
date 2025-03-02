@@ -88,7 +88,7 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
     }, [fullSize]);
  
     
-    const handlerCallback = (value:"Записаться" | "Заказать звонок" | "Записаться на пробный урок" | "Записаться c результатми теста" | "") => {
+    const handlerCallback = (value:CallBackModeType) => {
         open()
         setCallBackMode(value)
     } 
@@ -192,7 +192,7 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
                     </>
                 )}
 
-                {mode && setIsStarted && !isStarted && (
+                {mode && setIsStarted && !isStarted && isStarted !== undefined && (
                     <FinalStart
                         mode={mode}
                         isStarted={isStarted}

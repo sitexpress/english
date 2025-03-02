@@ -51,6 +51,7 @@ export const FullScreenModal: React.FC<FullScreenModalType> = ({ opened, close, 
                                   ? "Записаться c результатми теста"
                                   : "Записаться на определённый курс"
                     }
+                    title=""
                     setClose={() => close()}
                 />
             </Modal>

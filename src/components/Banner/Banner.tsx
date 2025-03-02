@@ -5,32 +5,34 @@ import { useState } from "react";
 import CallBackForm from "../CallBackForm/CallBackForm";
 
 export function Banner() {
-    const [isLoading, setIsLoading] = useState(false);
-    const openModal = (titleValue: string) => {
-        setIsLoading(true);
+    // const [isLoading, setIsLoading] = useState(false);
+    // const openModal = (titleValue: string) => {
+    //     setIsLoading(true);
 
-        modals.open({
-            title: (
-                <Text fw={500} size="xl" ta="center" c="dark.8" pl="md">
-                    Callback-order form:
-                </Text>
-            ),
-            children: (
-                <>
-                    <Text size="sm" ta="center" c="dimmed">
-                        Please fill in the form so that we can get in touch with you.
-                    </Text>
-                    <CallBackForm
-                        modalMode="callBack"
-                        title={titleValue}
-                        fitted="Perfect for you, if you want to make a video"
-                        setClose={() => modals.closeAll()}
-                    />
-                </>
-            ),
-        });
-        setIsLoading(false);
-    };
+    //     modals.open({
+    //         title: (
+    //             <Text fw={500} size="xl" ta="center" c="dark.8" pl="md">
+    //                 Callback-order form:
+    //             </Text>
+    //         ),
+    //         children: (
+    //             <>
+    //                 <Text size="sm" ta="center" c="dimmed">
+    //                     Please fill in the form so that we can get in touch with you.
+    //                 </Text>
+    //                 <CallBackForm
+    //                     modalMode="callBack"
+    //                     title={titleValue}
+    //                     fitted="Perfect for you, if you want to make a video"
+    //                     setClose={() => modals.closeAll()}
+    //                 />
+    //             </>
+    //         ),
+    //     });
+    //     setIsLoading(false);
+    // };
+
+    
     return (
         <Card radius="none" className={classes.card} mt={200}>
             <Overlay className={classes.overlay} opacity={0.7} zIndex={0} />
@@ -47,7 +49,7 @@ export function Banner() {
                     слова!
                 </Text>
 
-                <Button
+                {/* <Button
                     className={classes.action}
                     variant="white"
                     color="dark"
@@ -55,7 +57,7 @@ export function Banner() {
                     onClick={() => openModal("Aerial Media Content")}
                 >
                     Записаться на пробный урок
-                </Button>
+                </Button> */}
             </div>
         </Card>
     );

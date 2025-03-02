@@ -1,6 +1,5 @@
 import { Flex, Title, useMantineTheme, Badge, Paper } from "@mantine/core";
 import React, { useState, useEffect } from "react";
-import classes from "./CowntdownTimer.module.css"
 
 type CountdownTimerType = {
     initialSeconds: number;
@@ -19,7 +18,7 @@ const CountdownTimer: React.FC<CountdownTimerType> = ({ initialSeconds }) => {
     }, [seconds]);
 
     // Функция для форматирования времени в MM:SS
-    const formatTime = (timeInSeconds) => {
+    const formatTime = (timeInSeconds:number) => {
         const minutes = Math.floor(timeInSeconds / 60);
         const seconds = timeInSeconds % 60;
         return `${String(minutes).padStart(2, "0")}:${String(seconds).padStart(2, "0")}`;

@@ -34,11 +34,11 @@ const data = [
     },
 ];
 
-type FooterLinks = {
+type FooterLinksType = {
     mode: "main-page" | "test-page" | "result-page" | "contact-page" | "result-page"
 }
 
-export function FooterLinks({mode}) {
+export const FooterLinks:React.FC<FooterLinksType> = ({mode}) => {
     const groups = data.map((group) => {
         const links = group.links.map((link, index) => (
             <Text<"a">

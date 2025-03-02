@@ -9,11 +9,12 @@ import { CheckBox } from "../CheckBox/CheckBox";
 import { BadgesType } from "../FeaturesAsymmetrical/FeaturesAsymmetrical";
 import classes from "./CallBack.module.css";
 import { CallBackModeType } from "../HeroImageBackground/HeroImageBackground";
+import { Result } from "@/features/formSlice";
 
 type CallBackFormType = {
     mode: CallBackModeType;
     image?: string;
-    title?: string;
+    title: string;
     country?: string;
     description?: string;
     fitted?: string;
@@ -42,7 +43,8 @@ export default function CallBackForm({
 
     const localStorageResult = localStorage.getItem("result");
     const localStorageResultParsed = localStorageResult !== null && JSON.parse(localStorageResult);
-    const ammountOfCorrectAnswers = localStorageResultParsed.length && localStorageResultParsed.filter((item) => item.quest === true);
+    const ammountOfCorrectAnswers =
+        localStorageResultParsed.length && localStorageResultParsed.filter((item:Result) => item.quest === true);
     const persantage = (Number(ammountOfCorrectAnswers.length) * 100) / 10;
 
     const xIcon = <IconX style={{ width: rem(20), height: rem(20) }} />;
@@ -159,7 +161,8 @@ export default function CallBackForm({
             const line7 = `Номер телефона:" ${values.tel}`;
             const line8 =
                 mode === "Записаться c результатми теста"
-                    ? `Количество точных ответов: ${ammountOfCorrectAnswers.length} из 10` : ""
+                    ? `Количество точных ответов: ${ammountOfCorrectAnswers.length} из 10`
+                    : "";
             const line9 =
                 mode === "Записаться c результатми теста"
                     ? `Процент точных ответов: ${persantage}%`
@@ -214,7 +217,7 @@ export default function CallBackForm({
         >
             <TextInput
                 withAsterisk
-                         size="md"
+                size="md"
                 label="Имя"
                 placeholder="Иван"
                 key={formOne.key("name")}
@@ -222,7 +225,7 @@ export default function CallBackForm({
             />
             <TextInput
                 withAsterisk
-                         size="md"
+                size="md"
                 label="Телефон:"
                 placeholder="89876544321"
                 mt="md"
@@ -232,7 +235,7 @@ export default function CallBackForm({
 
             <Textarea
                 label="Сообщение"
-                         size="md"
+                size="md"
                 placeholder="Дополнительная информация если необходимо..."
                 mt="md"
                 key={formOne.key("message")}
@@ -279,7 +282,7 @@ export default function CallBackForm({
             />
             <TextInput
                 withAsterisk
-                         size="md"
+                size="md"
                 label="Номер телефона:"
                 placeholder="89876544321"
                 mt="md"
@@ -288,7 +291,7 @@ export default function CallBackForm({
             />
 
             <Textarea
-                     size="md"
+                size="md"
                 label="Доболнительное сообщение если нужно"
                 placeholder="Подскажите сколько стоит?..."
                 mt="md"
@@ -348,7 +351,7 @@ export default function CallBackForm({
             />
             <TextInput
                 withAsterisk
-                         size="md"
+                size="md"
                 label="Номер телефона:"
                 placeholder="89876544321"
                 mt="md"
