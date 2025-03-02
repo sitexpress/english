@@ -44,10 +44,9 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
     const result = useAppSelector(state => state.form.result)
 
     const localStorageResult = localStorage.getItem("result");
-    const localStorageResultParsed = localStorageResult !== null && JSON.parse(localStorageResult);
-    const ammountOfCorrectAnswers =
-        localStorageResultParsed.length && localStorageResultParsed.filter((item: Result) => item.quest === true);
-    const persantage = (Number(ammountOfCorrectAnswers.length) * 100) / 10;
+    const localStorageResultParsed = localStorageResult && JSON.parse(localStorageResult);
+    const ammountOfCorrectAnswers:Result[] = localStorageResultParsed && localStorageResultParsed.filter((item: Result) => item.quest === true);
+    const persantage = ammountOfCorrectAnswers && (Number(ammountOfCorrectAnswers.length) * 100) / 10;
 
 
     const onEndTest = () =>
@@ -92,7 +91,6 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
         open()
         setCallBackMode(value)
     } 
-
     
 
     if (opened) {

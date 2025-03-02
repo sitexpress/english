@@ -13,7 +13,10 @@ export const ResultPage = () => {
         <>
         <ScrollRestoration/>
             <Header />
-            <HeroImageBackground page="result" scrollIntoView={scrollIntoView} />
+            <HeroImageBackground 
+            page="result" 
+            scrollIntoView={scrollIntoView} 
+            />
             {/* <Divider label="Ensysta Inc." pt={40} mb={50} /> */}
             <FooterLinks mode="result-page"/>
         </>
