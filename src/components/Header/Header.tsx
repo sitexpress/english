@@ -117,6 +117,12 @@ export function Header() {
         </UnstyledButton>
     ));
 
+    const handlerDrawerOrderLessons = (value: CallBackModeType) => {
+        openHandler(value)
+        closeDrawer()
+
+    }
+
     return (
         <Box>
             {opened && <FullScreenModal opened={opened} close={close} mode={myMode} />}
@@ -312,7 +318,7 @@ export function Header() {
                         <Button
                             className={classes.btn_2}
                             variant="default"
-                            onClick={() => openHandler("Заказать звонок")}
+                            onClick={() => handlerDrawerOrderLessons("Заказать звонок")}
                             radius="xl"
                             size="sm"
                             component="a"
@@ -322,7 +328,7 @@ export function Header() {
 
                         <Button
                             variant="default"
-                            onClick={() => openHandler("Записаться на пробный урок")}
+                            onClick={() => handlerDrawerOrderLessons("Записаться на пробный урок")}
                             radius="xl"
                             className={classes.btn_1}
                         >
