@@ -53,7 +53,7 @@ export const BadgeCard: React.FC<BadgeCard> = ({
                         Пожалуйста заполните форму и мы с Вами свяжемся в ближайшее время.
                     </Text>
                     <CallBackForm
-                        mode="Записаться на определённый курс" 
+                        mode="Записаться на определённый курс"
                         setClose={() => modals.closeAll()}
                         {...items}
                     />
@@ -117,14 +117,9 @@ export const BadgeCard: React.FC<BadgeCard> = ({
                             </Text>
                         </div>
                     ) : (
-                        <div>
-                            <Text fz="sm" c="dimmed" fw={500} style={{ lineHeight: 1 }} mb={5}>
-                                Стойимость 1-го занятия:
-                            </Text>
-                            <Text fz="xl" fw={700} style={{ lineHeight: 1 }}>
-                                ₽ {Number(price).toFixed(2)}
-                            </Text>
-                        </div>
+                        <Text fz="xl" fw={700} style={{ lineHeight: 1 }}>
+                            {Number(price).toFixed(2)}р.
+                        </Text>
                     )}
                     {/* <Text fz="xl" fw={700} style={{ lineHeight: 1 }}>
                          $ {Number(price).toFixed(2)}
