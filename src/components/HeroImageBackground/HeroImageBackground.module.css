@@ -156,22 +156,16 @@
 .control {
     font-size: var(--mantine-font-size-md);
     background: #feca1d;
-
-    /* &:not(:first-of-type) {
-        margin-left: var(--mantine-spacing-md);
-    }
-
-    @media (max-width: $mantine-breakpoint-xs) {
-        &:not(:first-of-type) {
-            margin-top: var(--mantine-spacing-md);
+    @media (max-width: $mantine-breakpoint-sm) {
             margin-left: 0;
-        }
-    } */
+            width: 100%;
+    } 
 }
+
+
 
 .control2 {
     font-size: var(--mantine-font-size-md);
-    /* background: #feca1d; */
     border: 1px #feca1d solid;
 
     &:not(:first-of-type) {

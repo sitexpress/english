@@ -14,7 +14,8 @@ export function ContactPage() {
 
     return ( 
         <>
-        <ScrollRestoration/>
+            <ScrollRestoration/>
+
             <Header />
             <HeroImageBackground page="contacts" scrollIntoView={scrollIntoView} />
             <Divider label="Ensysta Inc." pt={100} mb={50} />

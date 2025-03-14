@@ -25,7 +25,13 @@ type HeroImageBackgroundType = {
     setIsStarted?: (value: boolean) => void;
 };
 
-export type CallBackModeType = "Записаться" | "Заказать звонок" | "Записаться на пробный урок" | "Записаться c результатми теста" | "Записаться на определённый курс" |  ""
+export type CallBackModeType =
+    | "Записаться"
+    | "Заказать звонок"
+    | "Записаться на пробный урок"
+    | "Записаться c результатми теста"
+    | "Записаться на определённый курс"
+    | "";
 
 export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
     page,
@@ -37,36 +43,31 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
     const [fullSize, setFullsize] = useState<boolean>(false);
     const [opened, { open, close }] = useDisclosure(false);
     const [scrollPosition, setScrollPosition] = useState<number>(0);
-    const [callBackMode, setCallBackMode] = useState<CallBackModeType>("")
+    const [callBackMode, setCallBackMode] = useState<CallBackModeType>("");
 
     const theme = useMantineTheme();
-    const navigate = useNavigate()
-    const result = useAppSelector(state => state.form.result)
+    const navigate = useNavigate();
+    const result = useAppSelector((state) => state.form.result);
 
     const localStorageResult = localStorage.getItem("result");
     const localStorageResultParsed = localStorageResult && JSON.parse(localStorageResult);
-    const ammountOfCorrectAnswers:Result[] = localStorageResultParsed && localStorageResultParsed.filter((item: Result) => item.quest === true);
+    const ammountOfCorrectAnswers: Result[] =
+        localStorageResultParsed && localStorageResultParsed.filter((item: Result) => item.quest === true);
     const persantage = ammountOfCorrectAnswers && (Number(ammountOfCorrectAnswers.length) * 100) / 10;
-
 
     const onEndTest = () =>
         modals.openConfirmModal({
-            title: 'Вы уверены что хотите завершить?',
+            title: "Вы уверены что хотите завершить?",
             centered: true,
-            children: (
-            <Text size="sm">
-                После завершения мы подсчитаем кол-во правильных ответов.
-            </Text>
-            ),
-            labels: { confirm: 'Завершить', cancel: "Вернуться к тесту" },
-            confirmProps: { color: 'red' },
-            onCancel: () => console.log('Cancel'),
-            onConfirm: () =>  {
-            localStorage.setItem("result", JSON.stringify(result));
-            navigate("/result")
+            children: <Text size="sm">После завершения мы подсчитаем кол-во правильных ответов.</Text>,
+            labels: { confirm: "Завершить", cancel: "Вернуться к тесту" },
+            confirmProps: { color: "red" },
+            onCancel: () => console.log("Cancel"),
+            onConfirm: () => {
+                localStorage.setItem("result", JSON.stringify(result));
+                navigate("/result");
             },
         });
-
 
     const handleScroll = () => {
         const position = window.scrollY;
@@ -85,13 +86,11 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
             setFullsize(false);
         }, 1000);
     }, [fullSize]);
- 
-    
-    const handlerCallback = (value:CallBackModeType) => {
-        open()
-        setCallBackMode(value)
-    } 
-    
+
+    const handlerCallback = (value: CallBackModeType) => {
+        open();
+        setCallBackMode(value);
+    };
 
     if (opened) {
         return <FullScreenModal opened={opened} close={close} mode={callBackMode} />;
@@ -120,15 +119,25 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
 
                 <div className={classes.controls}>
                     <Button
+                        href="https://dikidi.ru/#widget=182726"
+                        component="a"
+                        className={classes.control}
+                        variant="filled"
+                        size="md"
+                        radius="xl"
+                        bg={theme.colors.red[7]}
+                    >
+                        Записаться на свободное время
+                    </Button>
+                    <Button
                         className={classes.control}
                         variant="default"
                         size="md"
-                        w="200px"
                         onClick={() => handlerCallback("Записаться")}
                         radius="xl"
-                        mt={20}
+               
                     >
-                        Записаться
+                        Заказать звонок
                     </Button>
                 </div>
             </div>
@@ -315,5 +324,3 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
         </div>
     );
 };
-
-
