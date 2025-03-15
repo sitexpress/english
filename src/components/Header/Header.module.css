@@ -101,7 +101,7 @@
 
 .btn_1 {
     font-size: var(--mantine-font-size-sm);
-    background: #feca1d;
+    background: #53377A;
 
     &:not(:first-of-type) {
         margin-left: var(--mantine-spacing-md);

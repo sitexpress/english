@@ -28,17 +28,17 @@ export const StatsGroup = () => {
     const theme = useMantineTheme();
     const stats = data.map((stat) => (
         <div key={stat.title} className={classes.stat}>
-            <Text className={classes.title}>{stat.title}</Text>
-            <Text className={classes.count}>{stat.stats}</Text>
-            <Text className={classes.description}>{stat.description}</Text>
+            <Text className={classes.title} c="white">{stat.title}</Text>
+            <Text className={classes.count} c="white">{stat.stats}</Text>
+            <Text className={classes.description} c="white">{stat.description}</Text>
         </div>
     ));
     return (
-        <Flex justify="center" mt={150} className={classes.wrapper}>
+        <Flex justify="center" mt={150} >
             <Flex justify="center" direction="column" gap={100}>
                 <Flex justify="center" align="center" direction="column">
                     <Group justify="center">
-                        <Badge variant="default" size="lg" bg={theme.colors.yellow[5]}>
+                        <Badge variant="default" size="lg" bg="#53377A" c="white">
                             Статистика
                         </Badge>
                     </Group>
@@ -47,7 +47,7 @@ export const StatsGroup = () => {
                         English School в цифрах:
                     </Title>
                 </Flex>
-                <Group className={classes.root} ta="center" justify="center">
+                <Group className={classes.root} ta="center" justify="center" >
                     {stats}
                 </Group>
             </Flex>

@@ -167,8 +167,7 @@ export const badgesMockdata: BadgesMockdataType[] = [
         image: "/images/img/10.jpg",
         title: "Подготовка к IELTS, TOEFL",
         country: "экзамены",
-        description:
-            "Обеспечим высокий балл на экзаменах! Интенсивная подготовка, пробные тесты и советы экспертов.",
+        description: "Обеспечим высокий балл на экзаменах! Интенсивная подготовка, пробные тесты и советы экспертов.",
         fitted: "Подходит для тех кто готовится к экзаменам IELTS, TOEFL",
         discount: 5,
         price: 450,
@@ -224,17 +223,12 @@ export const FeaturesAsymmetrical: React.FC<FeaturesAsymmetricalType> = ({ mode,
         >
             <Flex justify="center" align="center" direction="column" ref={targetRef}>
                 <Group justify="center">
-                    <Badge
-                        variant="default"
-                        size="lg"
-                        bg={theme.colors.yellow[5]}
-                        
-                    >
+                    <Badge variant="default" size="lg" bg="#53377A" c="white">
                         Услуги
                     </Badge>
                 </Group>
 
-                <Title order={2} className={classes.title} ta="center" mt="sm">    
+                <Title order={2} className={classes.title} ta="center" mt="sm">
                     Все наши услуги тут:
                 </Title>
             </Flex>

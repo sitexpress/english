@@ -238,11 +238,11 @@ export function Header() {
                         </Button>
 
                         <Button
-                            variant="default"
                             onClick={() => openHandler("Записаться на пробный урок")}
                             radius="xl"
                             className={classes.btn_1}
                             visibleFrom="md"
+                            bg={theme.colors.red[7]}
                         >
                             Записаться на пробный урок
                         </Button>

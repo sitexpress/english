@@ -1,8 +1,6 @@
-import { Button, Card, Overlay, Text } from "@mantine/core";
+import {  Card, Overlay, Text } from "@mantine/core";
 import classes from "./Banner.module.css";
-import { modals } from "@mantine/modals";
-import { useState } from "react";
-import CallBackForm from "../CallBackForm/CallBackForm";
+
 
 export function Banner() {
     // const [isLoading, setIsLoading] = useState(false);

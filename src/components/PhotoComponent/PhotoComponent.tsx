@@ -7,7 +7,7 @@ export const PhotoComponent = () => {
         <Container my="xl" size="xl" mt={150}>
             <Flex justify="center" align="center" direction="column" mt={150}>
                 <Group justify="center">
-                    <Badge variant="default" size="lg" bg={theme.colors.yellow[5]}>
+                    <Badge variant="default" size="lg" bg="#53377A" c="white">
                         фото
                     </Badge>
                 </Group>

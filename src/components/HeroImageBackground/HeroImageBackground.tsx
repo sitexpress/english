@@ -1,5 +1,5 @@
 import cx from "clsx";
-import { Button, Container, Overlay, Text, Title, Flex, useMantineTheme, Paper, Table } from "@mantine/core";
+import { Button, Container, Overlay, Text, Title, Flex, useMantineTheme, Paper, Table, Group } from "@mantine/core";
 import classes from "./HeroImageBackground.module.css";
 import { Dots } from "./Dots";
 import { useDisclosure } from "@mantine/hooks";
@@ -97,23 +97,17 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
     }
 
     return page === "home" ? (
-        <div className={classes.wrapper_home}>
+        <Group className={classes.wrapper_home} p="lg">
             <Dots className={classes.dots} style={{ right: 0, top: 0 }} />
             <Dots className={classes.dots} style={{ left: 0, bottom: 0 }} />
             <div className={classes.inner}>
-                <Text size="xl" className={classes.description}>
-                    Добро пожаловать в <span style={{ color: "#feca1d", fontWeight: "bold" }}>English School</span>
-                </Text>
-                <Title className={classes.title} mt={30}>
-                    Открыт набор на полугодовые курсы{" "}
-                    <Text inherit component="span">
-                        АНГЛИЙСКОГО!
-                    </Text>
+                <Title className={classes.title} mt={30} c="white">
+                    Добро пожаловать в <div style={{ color: "#feca1d", fontWeight: "bold" }}>English School</div>
                 </Title>
 
                 <Container size="100%" p={0} ta="start" mt={30}>
                     <Text size="lg" ta="center" c="white">
-                        Успейте заключить договор и занять свое место в группе, мест остаётся все меньше!
+                        Английский для детей и не только!
                     </Text>
                 </Container>
 
@@ -131,17 +125,17 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
                     </Button>
                     <Button
                         className={classes.control}
-                        variant="default"
+                        variant="default"    
                         size="md"
-                        onClick={() => handlerCallback("Записаться")}
+                        onClick={() => handlerCallback("Записаться")} 
                         radius="xl"
-               
+                        component="span"
                     >
                         Заказать звонок
                     </Button>
                 </div>
             </div>
-        </div>
+        </Group>
     ) : page === "test" ? (
         <div
             className={
