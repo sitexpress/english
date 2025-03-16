@@ -223,7 +223,7 @@ export const FeaturesAsymmetrical: React.FC<FeaturesAsymmetricalType> = ({ mode,
         >
             <Flex justify="center" align="center" direction="column" ref={targetRef}>
                 <Group justify="center">
-                    <Badge variant="default" size="lg" bg="#53377A" c="white">
+                    <Badge variant="default" size="lg" bg={theme.colors.violet[4]} c="white">
                         Услуги
                     </Badge>
                 </Group>

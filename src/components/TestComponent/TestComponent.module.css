@@ -9,8 +9,8 @@
         var(--mantine-color-yellow-4) 0%,
         var(--mantine-color-yellow-7) 100%
       ); */
-      background: #53377A;
-      color: white;
+    background: #7950f2;
+    color: white;
     border: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-8));
   max-width: 1200px;
     @media (max-width: $mantine-breakpoint-sm) {

@@ -1,10 +1,11 @@
-import { Button, Flex, Image, Text, TextInput, Title } from '@mantine/core';
+import { Button, Flex, Image, Text, TextInput, Title, useMantineTheme } from '@mantine/core';
 import image from './image.svg';
 import classes from "./TestComponent.module.css";
 
 export function TestComponent() {
+  const theme = useMantineTheme()
   return (
-    <Flex justify="center" mt={150}>
+    <Flex justify="center" mt={150} >
     <div className={classes.wrapper}>
       <div className={classes.body}>
         <Title className={classes.title}>Онлайн тест</Title>
@@ -17,7 +18,7 @@ export function TestComponent() {
 
         <div className={classes.controls}>
           <a href="/test">
-          <Button size="xl" radius="xl" variant="default" >Пройти тест</Button>
+          <Button size="md" radius="xl" variant="default"  bg={theme.colors.yellow[4]}>Пройти тест</Button>
           
           </a>
         </div>

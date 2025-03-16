@@ -39,16 +39,17 @@ export const FinalStart: React.FC<FinalStartType> = ({ mode, isStarted, setIsSta
 
     
     return mode === "start" ? (
-        <Flex justify="center" mt={50}>
+        <Flex justify="center" bg={theme.colors.violet[1]} pb={20}>
             <Button
                 disabled={isStarted}
-                variant="outline"
-                color={theme.colors.yellow[6]}
+                variant="default"
+                color={theme.colors.dark[6]}
                 size="lg"
                 w="200px"
                 // onClick={open}
                 radius="xl"
                 onClick={handler}
+                bg={theme.colors.yellow[6]}
             >
                 Начать тест
             </Button>

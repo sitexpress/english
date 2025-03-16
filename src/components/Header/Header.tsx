@@ -36,7 +36,7 @@ import { ColorSchemeToggle } from "../ColorSchemeToggle/ColorSchemeToggle";
 import { useEffect, useState } from "react";
 import { FullScreenModal } from "../FullScreenModal/FullScreenModal";
 import { useAppDispatch } from "@/store/hooks";
-import { NavLink  } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { startLoading } from "@/features/formSlice";
 import { CallBackModeType } from "../HeroImageBackground/HeroImageBackground";
 
@@ -102,8 +102,8 @@ export function Header() {
     const links = mockdata.map((item) => (
         <UnstyledButton className={classes.subLink} key={item.title}>
             <Group wrap="nowrap" align="flex-start">
-                <ThemeIcon size={34} variant="default" radius="md" bg={theme.colors.dark[5]}>
-                    <item.icon size={22} color={theme.colors.yellow[3]} />
+                <ThemeIcon size={34} variant="default" radius="md" bg={theme.colors.gray[0]}>
+                    <item.icon size={22} color={theme.colors.violet[4]} />
                 </ThemeIcon>
                 <div>
                     <Text size="sm" fw={500}>
@@ -118,15 +118,17 @@ export function Header() {
     ));
 
     const handlerDrawerOrderLessons = (value: CallBackModeType) => {
-        openHandler(value)
-        closeDrawer()
-
-    }
+        openHandler(value);
+        closeDrawer();
+    };
 
     return (
         <Box>
             {opened && <FullScreenModal opened={opened} close={close} mode={myMode} />}
-            <header className={scrollPosition === 0 ? classes.header_top : classes.header_scrolled}>
+            <header
+                className={scrollPosition === 0 ? classes.header_top : classes.header_scrolled}
+                // className={classes.header_scrolled}
+            >
                 <Group justify="space-between" h="100%">
                     <Group visibleFrom="sm">
                         <Text
@@ -136,7 +138,7 @@ export function Header() {
                             c={
                                 scrollPosition === 0
                                     ? "light-dark(var(--mantine-color-white), var(--mantine-color-white))"
-                                    : "light-dark(var(--mantine-color-black), var(--mantine-color-white))"
+                                    : "light-dark(var(--mantine-color-white), var(--mantine-color-white))"
                             }
                         >
                             English School
@@ -145,22 +147,23 @@ export function Header() {
                     </Group>
 
                     <Group h="100%" gap={0} visibleFrom="sm">
-                        <NavLink 
+                        <NavLink
                             to="/"
-                            className={scrollPosition === 0 ? classes.link_top : classes.link_scrolled}
+                            // className={scrollPosition === 0 ? classes.link_top : classes.link_scrolled}
+                            className={classes.link_top}
                             onClick={() => dispatch(startLoading())}
                             style={({ isActive }) => ({
                                 color: isActive ? `${theme.colors.yellow[6]}` : ``,
-                              })}
-                               
+                            })}
                         >
                             Главная
-                        </NavLink >
+                        </NavLink>
                         <HoverCard width={600} position="bottom" radius="md" shadow="md" withinPortal>
                             <HoverCard.Target>
-                                <NavLink 
+                                <NavLink
                                     to="#"
-                                    className={scrollPosition === 0 ? classes.link_top : classes.link_scrolled}
+                                    // className={scrollPosition === 0 ? classes.link_top : classes.link_scrolled}
+                                    className={classes.link_top}
                                 >
                                     <Center inline>
                                         <Box component="span" mr={5}>
@@ -168,16 +171,17 @@ export function Header() {
                                         </Box>
                                         <IconChevronDown
                                             size={16}
-                                            color={scrollPosition === 0 ? theme.colors.gray[1] : theme.colors.dark[9]}
+                                            // color={scrollPosition === 0 ? theme.colors.gray[1] : theme.colors.dark[9]}
+                                            color={ theme.colors.gray[1]}
                                         />
                                     </Center>
-                                </NavLink >
+                                </NavLink>
                             </HoverCard.Target>
 
                             <HoverCard.Dropdown style={{ overflow: "hidden" }}>
                                 <Group justify="space-between" px="md">
-                                    <Text fw={500}>Features</Text>
-                                    <Anchor href="#" fz="xs">
+                                    <Text fw={700} c={theme.colors.violet[4]}>English school</Text>
+                                    <Anchor href="#" fz="xs" c={theme.colors.violet[4]}>
                                         Посмотреть всё
                                     </Anchor>
                                 </Group>
@@ -213,16 +217,17 @@ export function Header() {
                         >
                             Контакты
                         </NavLink > */}
-                        <NavLink 
+                        <NavLink
                             to="/test"
-                            className={scrollPosition === 0 ? classes.link_top : classes.link_scrolled}
+                            // className={scrollPosition === 0 ? classes.link_top : classes.link_scrolled}
+                            className={classes.link_top}
                             onClick={() => dispatch(startLoading())}
                             style={({ isActive }) => ({
                                 color: isActive ? `${theme.colors.yellow[6]}` : ``,
-                              })}
+                            })}
                         >
                             Онлайн тест
-                        </NavLink >
+                        </NavLink>
                     </Group>
 
                     <Group visibleFrom="sm">
@@ -242,7 +247,7 @@ export function Header() {
                             radius="xl"
                             className={classes.btn_1}
                             visibleFrom="md"
-                            bg={theme.colors.red[7]}
+                            bg={theme.colors.red[6]}
                         >
                             Записаться на пробный урок
                         </Button>
@@ -270,7 +275,7 @@ export function Header() {
                         <Title order={1} size="xl">
                             English School
                         </Title>
-                        <ColorSchemeToggle />
+                        {/* <ColorSchemeToggle /> */}
                     </Group>
                 }
                 hiddenFrom="sm"
@@ -279,18 +284,21 @@ export function Header() {
                 <ScrollArea h="calc(100vh - 80px" mx="-md">
                     <Divider mb={20} />
 
-                    <NavLink  to="/" className={classes.link_scrolled} onClick={() => dispatch(startLoading())}
-                                     style={({ isActive }) => ({
-                                        color: isActive ? `${theme.colors.yellow[6]}` : ``,
-                                      })}
+                    <NavLink
+                        to="/"
+                        className={classes.link_scrolled}
+                        onClick={() => dispatch(startLoading())}
+                        style={({ isActive }) => ({
+                            color: isActive ? `${theme.colors.violet[5]}` : ``,
+                        })}
                     >
-                        Главная 
-                    </NavLink >
+                        Главная
+                    </NavLink>
 
                     <UnstyledButton className={classes.link_scrolled} onClick={toggleLinks}>
                         <Center inline>
                             <Box component="span" mr={5}>
-                            Наши курсы
+                                Наши курсы
                             </Box>
                             <IconChevronDown size={16} color={theme.colors.blue[6]} />
                         </Center>
@@ -304,13 +312,16 @@ export function Header() {
                         Контакты
                     </NavLink > */}
 
-                    <NavLink  to="/test" className={classes.link_scrolled} onClick={() => dispatch(startLoading())} 
-                                     style={({ isActive }) => ({
-                                        color: isActive ? `${theme.colors.yellow[6]}` : ``,
-                                      })}
+                    <NavLink
+                        to="/test"
+                        className={classes.link_scrolled}
+                        onClick={() => dispatch(startLoading())}
+                        style={({ isActive }) => ({
+                            color: isActive ? `${theme.colors.yellow[6]}` : ``,
+                        })}
                     >
                         Онлайн тест
-                    </NavLink >
+                    </NavLink>
 
                     <Divider mt={20} mb={40} />
 
@@ -331,6 +342,7 @@ export function Header() {
                             onClick={() => handlerDrawerOrderLessons("Записаться на пробный урок")}
                             radius="xl"
                             className={classes.btn_1}
+                            c="white"
                         >
                             Записаться на пробный урок
                         </Button>

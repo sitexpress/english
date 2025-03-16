@@ -14,13 +14,13 @@ function Card({ image, title, category }: CardProps) {
     const theme = useMantineTheme()
     return (
         <Paper shadow="md" radius="md" style={{ backgroundImage: `url(${image})` }} className={classes.card}>
-            <div style={{background: `#53377A`, opacity: "0.9", padding: "5px", borderRadius: "10px"}}>
+            <div style={{background: `#7950f2`, opacity: "0.9", padding: "5px", borderRadius: "10px"}}>
                 <Text className={classes.category} size="xs">
                     {category}
                 </Text>
                 <Title order={3} className={classes.title}>
                     {title}
-                </Title>
+                </Title>  
             </div>
         </Paper>
     );
@@ -113,7 +113,7 @@ export function CardsCarousel() {
             <Flex justify="center" direction="column">
                 <Flex justify="center" align="center" direction="column">
                     <Group justify="center">
-                        <Badge variant="default" size="lg"  bg="#53377A" c="white">
+                        <Badge variant="default" size="lg"   bg={theme.colors.violet[4]} c="white">
                             Преподаватели
                         </Badge>
                     </Group>

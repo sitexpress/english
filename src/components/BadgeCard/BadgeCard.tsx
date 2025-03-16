@@ -132,7 +132,8 @@ export const BadgeCard: React.FC<BadgeCard> = ({
                         onClick={() => openModal(title)}
                         variant="default"
                         // bg={theme.colors.yellow[5]}
-                         bg="#53377A" c="white"
+                        bg={theme.colors.violet[4]}
+                        c="white"
                     >
                         оставить заявку
                     </Button>

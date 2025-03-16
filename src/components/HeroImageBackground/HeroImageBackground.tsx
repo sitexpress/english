@@ -1,5 +1,18 @@
 import cx from "clsx";
-import { Button, Container, Overlay, Text, Title, Flex, useMantineTheme, Paper, Table, Group } from "@mantine/core";
+import {
+    Button,
+    Container,
+    Overlay,
+    Text,
+    Title,
+    Flex,
+    useMantineTheme,
+    Paper,
+    Table,
+    Group,
+    List,
+    ThemeIcon,
+} from "@mantine/core";
 import classes from "./HeroImageBackground.module.css";
 import { Dots } from "./Dots";
 import { useDisclosure } from "@mantine/hooks";
@@ -9,9 +22,11 @@ import { FinalStart } from "../Final/FinalStart";
 import { useEffect, useState } from "react";
 import CountdownTimer from "../CountdownTimer/CountdownTimer";
 import { Result } from "@/features/formSlice";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { modals } from "@mantine/modals";
 import { useAppSelector } from "@/store/hooks";
+
+import { IconCircleCheck, IconCircleDashed } from "@tabler/icons-react";
 
 type AlignmentType = {
     alignment: "center" | "end" | "start" | undefined;
@@ -101,17 +116,53 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
             <Dots className={classes.dots} style={{ right: 0, top: 0 }} />
             <Dots className={classes.dots} style={{ left: 0, bottom: 0 }} />
             <div className={classes.inner}>
-                <Title className={classes.title} mt={30} c="white">
-                    Добро пожаловать в <div style={{ color: "#feca1d", fontWeight: "bold" }}>English School</div>
+                {/* <Title className={classes.title} mt={30} c="white">
+                    Добро пожаловать в{" "}
+                    <div style={{ color: "var(--mantine-color-violet-4)", fontWeight: "bold" }}>English School</div>
+                </Title> */}
+
+                <Title className={classes.title} mt={30} c={theme.colors.violet[4]}>
+                    English School
                 </Title>
 
-                <Container size="100%" p={0} ta="start" mt={30}>
-                    <Text size="lg" ta="center" c="white">
-                        Английский для детей и не только!
+                <Container size="100%" p={0} ta="start" mt={10}>
+                    <Text size="xl" ta="center" fw={700} c={theme.colors.dark[6]}>
+                        Английский - ONLINE для детей и не только
                     </Text>
                 </Container>
 
-                <div className={classes.controls}>
+                <Container size="100%" p={30} ta="start">
+                    <Flex justify="center">
+                        <List
+                            spacing="xs"
+                            size="sm"
+                            center
+                            icon={
+                                <ThemeIcon color="teal" size={24} radius="xl">
+                                    <IconCircleCheck size={16} />
+                                </ThemeIcon>
+                            }
+                        >
+                            <List.Item>Для школьников</List.Item>
+                            <List.Item>Для детей дошкольного возраста</List.Item>
+                            <List.Item>Для начинающих изучать</List.Item>
+                            <List.Item>Для продолжающих изучать</List.Item>
+                            <List.Item>Подготовка к IELTS, TOEFL</List.Item>
+                            <List.Item>Разговорный клуб</List.Item>
+                            {/* <List.Item
+                                icon={
+                                    <ThemeIcon color="blue" size={24} radius="xl">
+                                        <IconCircleDashed size={16} />
+                                    </ThemeIcon>
+                                }
+                            >
+                                Submit a pull request once you are done
+                            </List.Item> */}
+                        </List>
+                    </Flex>
+                </Container>
+
+                <Group className={classes.controls}>
                     <Button
                         href="https://dikidi.ru/#widget=182726"
                         component="a"
@@ -119,21 +170,21 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
                         variant="filled"
                         size="md"
                         radius="xl"
-                        bg={theme.colors.red[7]}
+                        bg={theme.colors.red[6]}
                     >
                         Записаться на свободное время
                     </Button>
                     <Button
                         className={classes.control}
-                        variant="default"    
+                        variant="default"
                         size="md"
-                        onClick={() => handlerCallback("Записаться")} 
+                        onClick={() => handlerCallback("Записаться")}
                         radius="xl"
                         component="span"
                     >
                         Заказать звонок
                     </Button>
-                </div>
+                </Group>
             </div>
         </Group>
     ) : page === "test" ? (
@@ -179,18 +230,20 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
                         )}
                     </Flex>
                 ) : (
-                    <>
-                        <Title className={classes.title} ta="center" mt={50}>
+                    <Flex direction="column" p={20} bg={theme.colors.violet[1]}>
+                        <Title mt={30} className={classes.title} c={theme.colors.violet[6]}>
                             Онлайн тест{" "}
                         </Title>
-
+                        {/* <Title className={classes.title} ta="center" mt={50}>
+                            Онлайн тест{" "}
+                        </Title> */}
                         <Container size="100%" ta="center" p={20}>
-                            <Text size="lg" ta="center" c="white" fw="500">
+                            <Text size="md" ta="center" c={theme.colors.dark[6]} fw="700">
                                 Пройдите наш онлайн тест, чтобы определить свой уровень английского языка и записаться
                                 на бесплатный пробный урок.
                             </Text>
                         </Container>
-                    </>
+                    </Flex>
                 )}
 
                 {mode && setIsStarted && !isStarted && isStarted !== undefined && (

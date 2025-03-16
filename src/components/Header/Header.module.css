@@ -4,13 +4,14 @@
     left: 0;
     z-index: 100;
     width: 100%;
-    height: 100px;
+    height: 80px;
     padding-left: var(--mantine-spacing-md);
     padding-right: var(--mantine-spacing-md);
-    border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4));
+    /* border-bottom: 1px solid light-dark(var(--mantine-color-gray-3), var(--mantine-color-dark-4)); */
+    background-color: light-dark(var(--mantine-color-violet-4), var(--mantine-color-dark-6));
     transition:
         height 0.5s ease-out,
-        background-color 0.5s ease-out;
+        background-color 0.5s ease-out; 
 }
 
 .header_scrolled {
@@ -22,12 +23,9 @@
     height: 60px;
     padding-left: var(--mantine-spacing-md);
     padding-right: var(--mantine-spacing-md);
-    background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
+    background-color: light-dark(var(--mantine-color-violet-4), var(--mantine-color-dark-6));
+    /* background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6)); */
     /* border-bottom: 1px solid light-dark(var(--mantine-color-gray-6), var(--mantine-color-dark-4)); */
-
-    /* transition:
-        height 0.5s linear,
-        background-color 0.5s linear; */
     transition:
         height 0.5s ease-out,
         background-color 0.5s ease-out;
@@ -47,7 +45,6 @@
         height: 42px;
         width: 100%;
     }
-
     /* @mixin hover {
         background-color: light-dark(var(--mantine-color-gray-0), var(--mantine-color-dark-6));
     } */
@@ -63,7 +60,8 @@
     padding-left: var(--mantine-spacing-md);
     padding-right: var(--mantine-spacing-md);
     text-decoration: none;
-    color: light-dark(var(--mantine-color-black), var(--mantine-color-white));
+    /* color: light-dark(var(--mantine-color-white), var(--mantine-color-white));   */
+    color: light-dark(var(--mantine-color-dark), var(--mantine-color-white));  
     font-weight: 500;
     font-size: var(--mantine-font-size-sm);
     @media (max-width: $mantine-breakpoint-sm) {
