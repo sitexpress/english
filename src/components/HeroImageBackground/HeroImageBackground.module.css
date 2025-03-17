@@ -17,6 +17,7 @@
  
     @media (max-width: $mantine-breakpoint-md) {
         background-image: url("/images/img/12.jpg");
+        background-size: cover;
         /* background-position: bottom 10px center;
         background-repeat: no-repeat;
         background-size: 300px; */
@@ -28,6 +29,7 @@
 
     @media (max-width: $mantine-breakpoint-xs) {
         background-image: url("/images/img/12.jpg");
+        background-size: cover;
         /* background-position: bottom 10px center;
         background-repeat: no-repeat;
         background-size: 220px; */
