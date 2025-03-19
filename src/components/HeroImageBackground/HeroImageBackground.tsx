@@ -292,8 +292,8 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
                     </Container>
                 </Paper>
 
-                <Container size="100%" p={10} ta="start" mt={100}>
-                    <Text size="lg" ta="center" c="white">
+                <Container size="100%" p={10} ta="start" mt={100} bg="white">
+                    <Text size="lg" ta="center" c={theme.colors.dark[4]} fw="700">
                         Отправить результат теста менеджеру и записаться на пробный урок:
                     </Text>
                 </Container>
@@ -316,7 +316,8 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
                             size="md"
                             w="200px"
                             radius="xl"
-                            c="white"
+                            c="black"
+                            bg="white"
                         >
                             На главную
                         </Button>
