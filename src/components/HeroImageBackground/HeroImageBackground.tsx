@@ -17,16 +17,14 @@ import classes from "./HeroImageBackground.module.css";
 import { Dots } from "./Dots";
 import { useDisclosure } from "@mantine/hooks";
 import { FullScreenModal } from "../FullScreenModal/FullScreenModal";
-import { FinalStart } from "../Final/FinalStart";
 
 import { useEffect, useState } from "react";
 import CountdownTimer from "../CountdownTimer/CountdownTimer";
-import { Result } from "@/features/formSlice";
-import { useNavigate } from "react-router-dom";
 import { modals } from "@mantine/modals";
 import { useAppSelector } from "@/store/hooks";
 
-import { IconCircleCheck, IconCircleDashed } from "@tabler/icons-react";
+import { IconCircleCheck } from "@tabler/icons-react";
+import { useNavigate } from "react-router-dom";
 
 type AlignmentType = {
     alignment: "center" | "end" | "start" | undefined;
@@ -38,37 +36,53 @@ type HeroImageBackgroundType = {
     mode?: "start";
     isStarted?: boolean;
     setIsStarted?: (value: boolean) => void;
+    fullSize?: boolean;
+    setFullsize?: (value: boolean) => void;
 };
 
 export type CallBackModeType =
     | "Записаться"
-    | "Заказать звонок"
+    | "Оставить заявку"
     | "Записаться на пробный урок"
     | "Записаться c результатми теста"
     | "Записаться на определённый курс"
+    | "Заказать звонок"
     | "";
 
 export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
     page,
     scrollIntoView,
-    mode,
     isStarted,
     setIsStarted,
+    fullSize,
+    setFullsize,
 }) => {
-    const [fullSize, setFullsize] = useState<boolean>(false);
     const [opened, { open, close }] = useDisclosure(false);
     const [scrollPosition, setScrollPosition] = useState<number>(0);
     const [callBackMode, setCallBackMode] = useState<CallBackModeType>("");
 
     const theme = useMantineTheme();
     const navigate = useNavigate();
-    const result = useAppSelector((state) => state.form.result);
+    const test = useAppSelector((state) => state.form.test);
+    const listening = useAppSelector((state) => state.form.listening);
 
-    const localStorageResult = localStorage.getItem("result");
-    const localStorageResultParsed = localStorageResult && JSON.parse(localStorageResult);
-    const ammountOfCorrectAnswers: Result[] =
-        localStorageResultParsed && localStorageResultParsed.filter((item: Result) => item.quest === true);
-    const persantage = ammountOfCorrectAnswers && (Number(ammountOfCorrectAnswers.length) * 100) / 10;
+    // test-----------------------------------------------------------------------------
+    const correctTestAnswers = test.filter((item) => item.isSelected === true).length;
+    const correctTestAnswersLS = localStorage.getItem("test-result");
+
+    const testResult =
+        correctTestAnswersLS !== undefined && correctTestAnswersLS !== null && JSON.parse(correctTestAnswersLS);
+    const persantageOfCorrectTestResult = testResult && (Number(testResult) * 100) / test.length;
+
+    // listening-----------------------------------------------------------------------
+    const correctListeningAnswers = listening.filter((item) => item.result).length;
+    const correctListeningAnswersLS = localStorage.getItem("listening-result");
+
+    const listeningResult =
+        correctListeningAnswersLS !== undefined &&
+        correctListeningAnswersLS !== null &&
+        JSON.parse(correctListeningAnswersLS);
+    const persantageOfCorrectListeningResult = listeningResult && (Number(listeningResult) * 100) / listening.length;
 
     const onEndTest = () =>
         modals.openConfirmModal({
@@ -79,7 +93,11 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
             confirmProps: { color: "red" },
             onCancel: () => console.log("Cancel"),
             onConfirm: () => {
-                localStorage.setItem("result", JSON.stringify(result));
+                setIsStarted && setIsStarted(false);
+                setFullsize && setFullsize(false);
+
+                localStorage.setItem("test-result", JSON.stringify(correctTestAnswers));
+                localStorage.setItem("listening-result", JSON.stringify(correctListeningAnswers));
                 navigate("/result");
             },
         });
@@ -87,6 +105,11 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
     const handleScroll = () => {
         const position = window.scrollY;
         setScrollPosition(position);
+    };
+
+    const handlerCallback = (value: CallBackModeType) => {
+        open();
+        setCallBackMode(value);
     };
 
     useEffect(() => {
@@ -98,29 +121,16 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
 
     useEffect(() => {
         setTimeout(() => {
-            setFullsize(false);
+            setFullsize && setFullsize(false);
         }, 1000);
     }, [fullSize]);
 
-    const handlerCallback = (value: CallBackModeType) => {
-        open();
-        setCallBackMode(value);
-    };
-
-    if (opened) {
-        return <FullScreenModal opened={opened} close={close} mode={callBackMode} />;
-    }
-
     return page === "home" ? (
         <Group className={classes.wrapper_home} p="lg">
+            <FullScreenModal opened={opened} close={close} mode={callBackMode} />
             <Dots className={classes.dots} style={{ right: 0, top: 0 }} />
             <Dots className={classes.dots} style={{ left: 0, bottom: 0 }} />
             <div className={classes.inner}>
-                {/* <Title className={classes.title} mt={30} c="white">
-                    Добро пожаловать в{" "}
-                    <div style={{ color: "var(--mantine-color-violet-4)", fontWeight: "bold" }}>English School</div>
-                </Title> */}
-
                 <Title className={classes.title} mt={30} c={theme.colors.violet[4]}>
                     English School
                 </Title>
@@ -164,25 +174,26 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
 
                 <Group className={classes.controls}>
                     <Button
-                        href="https://dikidi.ru/#widget=182726"
-                        component="a"
+                        // href="https://dikidi.ru/#widget=182726"
+                        // component="a"
+                        onClick={() => handlerCallback("Записаться на пробный урок")}
                         className={classes.control}
                         variant="filled"
                         size="md"
                         radius="xl"
                         bg={theme.colors.red[6]}
                     >
-                        Записаться на свободное время
+                        Записаться на пробный урок
                     </Button>
                     <Button
                         className={classes.control}
                         variant="default"
                         size="md"
-                        onClick={() => handlerCallback("Записаться")}
+                        onClick={() => handlerCallback("Оставить заявку")}
                         radius="xl"
                         component="span"
                     >
-                        Заказать звонок
+                        Оставить заявку
                     </Button>
                 </Group>
             </div>
@@ -230,51 +241,61 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
                         )}
                     </Flex>
                 ) : (
-                    <Flex direction="column" p={20} bg={theme.colors.violet[1]}>
+                    <Flex
+                        direction="column"
+                        p={20}
+                        style={{
+                            background: `${theme.colors.violet[0]}`,
+                            opacity: 0.9,
+                        }}
+                    >
                         <Title mt={30} className={classes.title} c={theme.colors.violet[6]}>
                             Онлайн тест{" "}
                         </Title>
-                        {/* <Title className={classes.title} ta="center" mt={50}>
-                            Онлайн тест{" "}
-                        </Title> */}
                         <Container size="100%" ta="center" p={20}>
                             <Text size="md" ta="center" c={theme.colors.dark[6]} fw="700">
-                                Пройдите наш онлайн тест, чтобы определить свой уровень английского языка и записаться
-                                на бесплатный пробный урок.
+                                Узнайте свой уровень английского — пройдите тест и запишитесь на бесплатный пробный урок
+                            </Text>
+                            <Text fz="sm" c={theme.colors.dark[6]} mt="sm">
+                                --длительность теста: 50 минут
                             </Text>
                         </Container>
                     </Flex>
                 )}
 
-                {mode && setIsStarted && !isStarted && isStarted !== undefined && (
+                {/* {mode && setIsStarted && !isStarted && isStarted !== undefined && (
                     <FinalStart
                         mode={mode}
                         isStarted={isStarted}
                         setIsStarted={setIsStarted}
                         setFullsize={setFullsize}
                     />
-                )}
+                )} */}
             </div>
         </div>
     ) : page === "result" ? (
         <div className={classes.wrapper_test}>
             <div className={classes.inner}>
-                <Paper shadow="xs" radius="none" p="xl">
-                    <Title className={classes.title} ta="center" c={theme.colors.dark[4]}>
+                <Paper className={classes.paper} shadow="xs" radius="none" p="xl" style={{ opacity: "0.95" }}>
+                    <Title className={classes.title} ta="center" c={theme.colors.dark[4]} pt={100}>
                         Ваш{" "}
                         <Text inherit component="span" c={theme.colors.yellow[6]}>
                             результат:
                         </Text>
                     </Title>
 
-                    <Container size={640} mt={40}>
+                    <Container size={640} mt={40} p={10} style={{ border: "1px solid #7950f2" }}>
+                        <Text size="md" p={10} fw={700}>
+                            1.Результаты теста:
+                        </Text>
+
                         <Table variant="vertical" layout="fixed" withTableBorder>
                             <Table.Tbody>
                                 <Table.Tr>
                                     <Table.Th w={150}>Количество точных ответов:</Table.Th>
                                     <Table.Td>
                                         <Text size="xl" ta="center" c={theme.colors.dark[4]} fw={500}>
-                                            {ammountOfCorrectAnswers.length} из 10
+                                            {testResult} из {test.length}
                                         </Text>
                                     </Table.Td>
                                 </Table.Tr>
@@ -283,46 +304,95 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
                                     <Table.Th>Процент точных ответов:</Table.Th>
                                     <Table.Td>
                                         <Text size="xl" ta="center" c={theme.colors.dark[4]} fw={500}>
-                                            {persantage} %
+                                            {persantageOfCorrectTestResult.toFixed(1)} %
                                         </Text>
                                     </Table.Td>
                                 </Table.Tr>
                             </Table.Tbody>
                         </Table>
+
+                        <Text size="md" p={10} fw={700}>
+                            2.Результаты аудирования:
+                        </Text>
+
+                        <Table variant="vertical" layout="fixed" withTableBorder>
+                            <Table.Tbody>
+                                <Table.Tr>
+                                    <Table.Th w={150}>Количество точных ответов:</Table.Th>
+                                    <Table.Td>
+                                        <Text size="xl" ta="center" c={theme.colors.dark[4]} fw={500}>
+                                            {listeningResult} из {listening.length}
+                                        </Text>
+                                    </Table.Td>
+                                </Table.Tr>
+
+                                <Table.Tr>
+                                    <Table.Th>Процент точных ответов:</Table.Th>
+                                    <Table.Td>
+                                        <Text size="xl" ta="center" c={theme.colors.dark[4]} fw={500}>
+                                            {persantageOfCorrectListeningResult.toFixed(1)} %
+                                        </Text>
+                                    </Table.Td>
+                                </Table.Tr>
+                            </Table.Tbody>
+                        </Table>
+
+                        <Flex
+                            direction="column"
+                            gap={20}
+                            justify="center"
+                            align="center"
+                            mt={20}
+                            pt={30}
+                            pb={30}
+                            bg="#7950f2"
+                            style={{ border: "1px solid lightgrey" }}
+                        >
+                            <Text size="md" ta="center" p="sm" c="white" fw="700">
+                                Поделитесь результатами теста с менеджером и забронируйте пробное занятие:
+                            </Text>
+                            <Button
+                                className={classes.control}
+                                variant="default"
+                                size="sm"
+                                w="200px"
+                                onClick={() => handlerCallback("Записаться c результатми теста")}
+                                radius="xl"
+                            >
+                                Записаться
+                            </Button>
+                        </Flex>
+                    </Container>
+                    <Container className={classes.controls}>
+                        <a href="/test">
+                            <Button
+                                className={classes.control}
+                                variant="filled"
+                                size="sm"
+                                w="200px"
+                                // onClick={onReStartTest}
+                                radius="xl"
+                                bg="red"
+                            >
+                                Пройти тест заново
+                            </Button>
+                        </a>
+
+                        <a href="/">
+                            <Button
+                                className={classes.control2}
+                                variant="outline"
+                                size="sm"
+                                w="200px"
+                                radius="xl"
+                                c="black"
+                                bg="white"
+                            >
+                                На главную
+                            </Button>
+                        </a>
                     </Container>
                 </Paper>
-
-                <Container size="100%" p={10} ta="start" mt={100} bg="white">
-                    <Text size="lg" ta="center" c={theme.colors.dark[4]} fw="700">
-                        Отправить результат теста менеджеру и записаться на пробный урок:
-                    </Text>
-                </Container>
-
-                <div className={classes.controls}>
-                    <Button
-                        className={classes.control}
-                        variant="default"
-                        size="md"
-                        w="200px"
-                        onClick={() => handlerCallback("Записаться c результатми теста")}
-                        radius="xl"
-                    >
-                        Записаться
-                    </Button>
-                    <a href="/">
-                        <Button
-                            className={classes.control2}
-                            variant="outline"
-                            size="md"
-                            w="200px"
-                            radius="xl"
-                            c="black"
-                            bg="white"
-                        >
-                            На главную
-                        </Button>
-                    </a>
-                </div>
             </div>
         </div>
     ) : (

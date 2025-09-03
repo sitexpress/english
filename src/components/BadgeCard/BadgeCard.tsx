@@ -1,20 +1,25 @@
-import { IconHeart } from "@tabler/icons-react";
-import { AspectRatio, Badge, Button, Card, Center, Group, Image, Text, useMantineTheme } from "@mantine/core";
+import { Badge, Button, Card, Divider, Group, Image, Text, useMantineTheme } from "@mantine/core";
 import classes from "./BadgeCard.module.css";
 import { modals } from "@mantine/modals";
 import CallBackForm from "../CallBackForm/CallBackForm";
 import { useState } from "react";
 import { BadgesType } from "../FeaturesAsymmetrical/FeaturesAsymmetrical";
+import { FinalStart } from "../Final/FinalStart";
 
 type BadgeCard = {
     image: string;
     title: string;
-    country: string;
+    country?: string;
     description: string;
     fitted: string;
-    discount: number;
-    price: number;
-    badges: BadgesType[];
+    discount?: number;
+    price?: number;
+    badges?: BadgesType[];
+    mode: "badge-cards" | "tests";
+    fullSize?: boolean;
+    setFullsize?: (value: boolean) => void;
+    isStarted: boolean;
+    setIsStarted: (value: boolean) => void;
 };
 
 export const BadgeCard: React.FC<BadgeCard> = ({
@@ -26,20 +31,38 @@ export const BadgeCard: React.FC<BadgeCard> = ({
     discount,
     price,
     badges,
+    mode,
+    fullSize,
+    setFullsize,
+    isStarted,
+    setIsStarted,
 }) => {
     const [isLoading, setIsLoading] = useState(false);
-    const items = { image, title, country, description, fitted, discount, price, badges };
+    const items = {
+        image,
+        title,
+        country,
+        description,
+        fitted,
+        discount,
+        price,
+        badges,
+        fullSize,
+        setFullsize,
+        isStarted,
+        setIsStarted,
+    };
     const theme = useMantineTheme();
-    const featuresB = badges.map((feature) => (
-        <Center key={feature.label}>
-            <feature.icon size={22} className={classes.icon} stroke={1.5} />
-            <Text size="xs" c="dimmed">
-                {feature.label}
-            </Text>
-        </Center>
-    ));
+    // const featuresB = (badges ?? []).map((feature) => (
+    //     <Center key={feature.label}>
+    //         <feature.icon size={22} className={classes.icon} stroke={1.5} />
+    //         <Text size="xs" c="dimmed">
+    //             {feature.label}
+    //         </Text>
+    //     </Center>
+    // ));
 
-    const openModal = (titleValue: string) => {
+    const openModal = () => {
         setIsLoading(true);
         modals.open({
             title: (
@@ -63,7 +86,7 @@ export const BadgeCard: React.FC<BadgeCard> = ({
         setIsLoading(false);
     };
 
-    return (
+    return mode === "badge-cards" ? (
         <Card withBorder radius="md" p="md" className={classes.card}>
             <Card.Section>
                 <Image src={image} alt={title} height={180} />
@@ -129,7 +152,7 @@ export const BadgeCard: React.FC<BadgeCard> = ({
                         style={{ flex: 1 }}
                         loading={isLoading}
                         radius="md"
-                        onClick={() => openModal(title)}
+                        onClick={() => openModal()}
                         variant="default"
                         // bg={theme.colors.yellow[5]}
                         bg={theme.colors.violet[4]}
@@ -137,6 +160,53 @@ export const BadgeCard: React.FC<BadgeCard> = ({
                     >
                         оставить заявку
                     </Button>
+                </Group>
+            </Card.Section>
+        </Card>
+    ) : (
+        <Card withBorder radius="xl" p="md" className={classes.card}>
+            <Card.Section>
+                <Image src={image} alt={title} height={180} />
+            </Card.Section>
+            <Divider label="english"/>
+
+            <Card.Section className={classes.section} mt="md">
+                <Group justify="space-between" mt="md">
+                    <div>
+                        <Text fz="lg" fw={500}>
+                            {title}
+                        </Text>
+                        <Text fz="xs" c="dimmed">
+                            {fitted} level
+                        </Text>
+                    </div>
+                </Group>
+                <Text fz="sm" mt="xs">
+                    {description}
+                </Text>
+            </Card.Section>
+
+            <Card.Section className={classes.section}>
+                <Group gap={30} mt="xs" justify="center" align="center">
+                    <FinalStart
+                        mode="start"
+                        isStarted={isStarted}
+                        setIsStarted={setIsStarted}
+                        fullSize={fullSize}
+                        setFullsize={setFullsize}
+                    />
+                    {/* <Button
+                        style={{ flex: 1 }}
+                        loading={isLoading}
+                        radius="md"
+                        onClick={() => openModal(title)}
+                        variant="default"
+                        // bg={theme.colors.yellow[5]}
+                        bg={theme.colors.violet[4]}
+                        c="white"
+                    >
+                        Начать тест на уровень - {fitted}
+                    </Button> */}
                 </Group>
             </Card.Section>
         </Card>

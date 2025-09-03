@@ -26,26 +26,22 @@ type CallBackFormType = {
 
 export default function CallBackForm({
     mode,
-    image,
     title,
-    country,
-    description,
     fitted,
     discount,
     price,
-    badges,
     setClose,
+    ...rest
 }: CallBackFormType) {
     const [submittedValues, setSubmittedValues] = useState<string>("");
     const [isLoading, setIsLoading] = useState(false);
     const [boxValue, setBoxValue] = useState<string[]>([]);
     const theme = useMantineTheme();
 
-    const localStorageResult = localStorage.getItem("result");
+    const localStorageResult = localStorage.getItem("test-result");
     const localStorageResultParsed = localStorageResult !== null && JSON.parse(localStorageResult);
-    const ammountOfCorrectAnswers =
-        localStorageResultParsed.length && localStorageResultParsed.filter((item:Result) => item.quest === true);
-    const persantage = (Number(ammountOfCorrectAnswers.length) * 100) / 10;
+    const ammountOfCorrectAnswers = localStorageResultParsed.length && localStorageResultParsed.filter((item:Result) => item.quest === true);
+    const persantage = (Number(ammountOfCorrectAnswers) * 100) / 10;
 
     const xIcon = <IconX style={{ width: rem(20), height: rem(20) }} />;
     const checkIcon = <IconCheck style={{ width: rem(20), height: rem(20) }} />;

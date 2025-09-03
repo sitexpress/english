@@ -20,9 +20,9 @@ export const FullScreenModal: React.FC<FullScreenModalType> = ({ opened, close, 
                         <Text fw={500} size="xl" ta="center" c="dark.8" pl="md">
                             Записаться
                         </Text>
-                    ) : mode === "Заказать звонок" ? (
+                    ) : mode === "Оставить заявку" ? (
                         <Text fw={500} size="xl" ta="center" c="dark.8" pl="md">
-                            Заказать звонок
+                            Оставить заявку
                         </Text>
                     ) : mode === "Записаться c результатми теста" ? (
                         <Text fw={500} size="xl" ta="center" c="dark.8" pl="md">
@@ -36,15 +36,15 @@ export const FullScreenModal: React.FC<FullScreenModalType> = ({ opened, close, 
                 }
                 fullScreen
                 radius={0}
-                transitionProps={{ transition: "fade-right", duration: 2000 }}
+                transitionProps={{ transition: "fade-right", duration: 500 }}
                 className={classes.modals}
             >
                 <CallBackForm
                     mode={
                         mode === "Записаться"
                             ? "Записаться"
-                            : mode === "Заказать звонок"
-                              ? "Заказать звонок"
+                            : mode === "Оставить заявку"
+                              ? "Оставить заявку"
                               : mode === "Записаться на пробный урок"
                                 ? "Записаться на пробный урок"
                                 : mode === "Записаться c результатми теста"

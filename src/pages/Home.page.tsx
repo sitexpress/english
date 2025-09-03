@@ -1,19 +1,13 @@
 import { Header } from "@/components/Header/Header";
-// import { Welcome } from "../components/Welcome/Welcome";
 import { CardsCarousel } from "@/components/CardsCarousel/CardsCarousel";
 import { FeaturesAsymmetrical } from "@/components/FeaturesAsymmetrical/FeaturesAsymmetrical";
 import { FooterLinks } from "@/components/Footer/FooterLinks";
 import { HeroImageBackground } from "@/components/HeroImageBackground/HeroImageBackground";
-import { Box, LoadingOverlay } from "@mantine/core";
 import { useDisclosure, useScrollIntoView } from "@mantine/hooks";
 import { StatsGroup } from "@/components/Stats/StatsGroup";
 import { PhotoComponent } from "@/components/PhotoComponent/PhotoComponent";
 import { TestComponent } from "@/components/TestComponent/TestComponent";
-import { useAppSelector } from "@/store/hooks";
-import { ScrollRestoration, useLocation } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { useEffect } from "react";
-import { startLoading, stopLoading } from "@/features/formSlice";
+import { ScrollRestoration } from "react-router-dom";
 import { Banner } from "@/components/Banner/Banner";
 
 export function HomePage() {
@@ -49,7 +43,7 @@ export function HomePage() {
     //     }, 0);
     // }, []);
 
-    const [visible, { toggle }] = useDisclosure(false);
+    // const [visible, { toggle }] = useDisclosure(false);
     const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
         offset: 60,
     });

@@ -3,24 +3,28 @@ import { FooterLinks } from "@/components/Footer/FooterLinks";
 import { HeroImageBackground } from "@/components/HeroImageBackground/HeroImageBackground";
 import { useScrollIntoView } from "@mantine/hooks";
 
-import { RadioComponent2 } from "@/Radio2/RadioComponent2";
-import { Badge, Flex, Group,  Title,  useMantineTheme } from "@mantine/core";
-import { FinalStart } from "@/components/Final/FinalStart";
+import { Badge, Flex, Group, Title, useMantineTheme } from "@mantine/core";
 import { useState } from "react";
 import { ScrollRestoration } from "react-router-dom";
-
+import { RadioComponent } from "@/Radio2/RadioComponent";
+import { FeaturesAsymmetrical } from "@/components/FeaturesAsymmetrical/FeaturesAsymmetrical";
+import { FinalStart } from "@/components/Final/FinalStart";
 
 export function TestPage() {
+    const [fullSize, setFullsize] = useState<boolean>(false);
     const [isStarted, setIsStarted] = useState(false);
     const theme = useMantineTheme();
+
     const { scrollIntoView, targetRef } = useScrollIntoView<HTMLDivElement>({
         offset: 60,
     });
 
+    console.log("fullSize:",fullSize)
+    console.log("isStarted:",isStarted)
 
     return (
         <>
-        <ScrollRestoration/>
+            <ScrollRestoration />
             <Header />
             <HeroImageBackground
                 page="test"
@@ -28,40 +32,45 @@ export function TestPage() {
                 mode="start"
                 isStarted={isStarted}
                 setIsStarted={setIsStarted}
+                fullSize={fullSize}
+                setFullsize={setFullsize}
             />
 
             {/* <Divider label="Ensysta Inc." pt={40} mb={50} /> */}
-
             {isStarted && (
-                <Flex justify="center" align="center" direction="column" ref={targetRef} mt={200}>
+                <Flex
+                    justify="flex-end"
+                    align="center"
+                    direction="column"
+                    ref={targetRef}
+                    mt={170}
+                    mb={0}
+                    pl={20}
+                    pr={20}
+                >
                     <Group justify="center">
                         <Badge variant="default" size="lg" bg={theme.colors.yellow[5]}>
                             Тест
                         </Badge>
                     </Group>
 
-                    <Title order={2} size="24px" fw="900" ta="center" mt="sm">
+                    <Title order={2} size="18px" fw="900" ta="center" mt="sm">
                         Постарайтесь ответить на все вопросы:
                     </Title>
                 </Flex>
             )}
-            {isStarted && (
-                <Flex mt={0} justify="center" direction="column" wrap="wrap" align="center">
-                    <RadioComponent2 quest={1} />
-                    <RadioComponent2 quest={2} />
-                    <RadioComponent2 quest={3} />
-                    <RadioComponent2 quest={4} />
-                    <RadioComponent2 quest={5} />
-                    <RadioComponent2 quest={6} />
-                    <RadioComponent2 quest={7} />
-                    <RadioComponent2 quest={8} />
-                    <RadioComponent2 quest={9} />
-                    <RadioComponent2 quest={10} />
-                </Flex>
+            {!isStarted && (
+                <FeaturesAsymmetrical
+                    mode="tests"
+                    targetRef={targetRef}
+                    fullSize={fullSize}
+                    setFullsize={setFullsize}
+                    isStarted={isStarted}
+                    setIsStarted={setIsStarted}
+                />
             )}
-
+            {isStarted && <RadioComponent />}
             {isStarted && <FinalStart mode="final" isStarted={isStarted} setIsStarted={setIsStarted} />}
-
             <FooterLinks mode="test-page" />
         </>
     );

@@ -15,9 +15,9 @@ export function ContactPage() {
     return ( 
         <>
             <ScrollRestoration/>
-
+     
             <Header />
-            <HeroImageBackground page="contacts" scrollIntoView={scrollIntoView} />
+            <HeroImageBackground page="contacts" scrollIntoView={scrollIntoView}  />
             <Divider label="Ensysta Inc." pt={100} mb={50} />
             <MapComponent />
             <GetInTouch targetRef={targetRef}/>

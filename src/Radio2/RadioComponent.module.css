@@ -11,7 +11,8 @@
     }
   
     &[data-checked] {
-      border-color: var(--mantine-primary-color-filled);
+      /* border-color: var(--mantine-primary-color-filled); */
+      border-color: #7950f2;
     }
   
     @mixin hover {

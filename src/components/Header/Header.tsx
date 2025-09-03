@@ -1,14 +1,4 @@
-import {
-    IconBadge4k,
-    IconBook,
-    IconChartPie3,
-    IconCheck,
-    IconChevronDown,
-    IconCode,
-    IconCoin,
-    IconFingerprint,
-    IconNotification,
-} from "@tabler/icons-react";
+import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 import {
     Anchor,
     Box,
@@ -32,7 +22,6 @@ import {
 import { useDisclosure } from "@mantine/hooks";
 
 import classes from "./Header.module.css";
-import { ColorSchemeToggle } from "../ColorSchemeToggle/ColorSchemeToggle";
 import { useEffect, useState } from "react";
 import { FullScreenModal } from "../FullScreenModal/FullScreenModal";
 import { useAppDispatch } from "@/store/hooks";
@@ -124,11 +113,8 @@ export function Header() {
 
     return (
         <Box>
-            {opened && <FullScreenModal opened={opened} close={close} mode={myMode} />}
-            <header
-                className={scrollPosition === 0 ? classes.header_top : classes.header_scrolled}
-                // className={classes.header_scrolled}
-            >
+            <FullScreenModal opened={opened} close={close} mode={myMode} />
+            <header className={scrollPosition === 0 ? classes.header_top : classes.header_scrolled}>
                 <Group justify="space-between" h="100%">
                     <Group visibleFrom="sm">
                         <Text
@@ -172,7 +158,7 @@ export function Header() {
                                         <IconChevronDown
                                             size={16}
                                             // color={scrollPosition === 0 ? theme.colors.gray[1] : theme.colors.dark[9]}
-                                            color={ theme.colors.gray[1]}
+                                            color={theme.colors.gray[1]}
                                         />
                                     </Center>
                                 </NavLink>
@@ -180,7 +166,9 @@ export function Header() {
 
                             <HoverCard.Dropdown style={{ overflow: "hidden" }}>
                                 <Group justify="space-between" px="md">
-                                    <Text fw={700} c={theme.colors.violet[4]}>English school</Text>
+                                    <Text fw={700} c={theme.colors.violet[4]}>
+                                        English school
+                                    </Text>
                                     <Anchor href="#" fz="xs" c={theme.colors.violet[4]}>
                                         Посмотреть всё
                                     </Anchor>
@@ -221,7 +209,9 @@ export function Header() {
                             to="/test"
                             // className={scrollPosition === 0 ? classes.link_top : classes.link_scrolled}
                             className={classes.link_top}
-                            onClick={() => dispatch(startLoading())}
+                            onClick={() => {
+                                dispatch(startLoading());
+                            }}
                             style={({ isActive }) => ({
                                 color: isActive ? `${theme.colors.yellow[6]}` : ``,
                             })}
@@ -234,12 +224,12 @@ export function Header() {
                         <Button
                             className={classes.btn_2}
                             variant="default"
-                            onClick={() => openHandler("Заказать звонок")}
+                            onClick={() => openHandler("Оставить заявку")}
                             radius="xl"
                             size="sm"
                             component="a"
                         >
-                            Заказать звонок
+                            Оставить заявку
                         </Button>
 
                         <Button
@@ -256,11 +246,12 @@ export function Header() {
                         opened={drawerOpened}
                         onClick={toggleDrawer}
                         hiddenFrom="sm"
-                        color={
-                            scrollPosition === 0
-                                ? "light-dark(var(--mantine-color-white), var(--mantine-color-white))"
-                                : "light-dark(var(--mantine-color-black), var(--mantine-color-white))"
-                        }
+                        // color={
+                        //     scrollPosition === 0
+                        //         ? "light-dark(var(--mantine-color-white), var(--mantine-color-white))"
+                        //         : "light-dark(var(--mantine-color-black), var(--mantine-color-white))"
+                        // }
+                        color="white"
                     />
                 </Group>
             </header>
@@ -315,7 +306,9 @@ export function Header() {
                     <NavLink
                         to="/test"
                         className={classes.link_scrolled}
-                        onClick={() => dispatch(startLoading())}
+                        onClick={() => {
+                            dispatch(startLoading());
+                        }}
                         style={({ isActive }) => ({
                             color: isActive ? `${theme.colors.yellow[6]}` : ``,
                         })}
