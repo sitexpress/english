@@ -638,7 +638,7 @@ export const formSlice = createSlice({
             const { index, destination, source } = action.payload;
 
             // Если нет места назначения или позиция не изменилась, выходим
-            if (!destination || destination.index === source.index) return;
+            if (!destination || destination.index === source.index) {return;}
 
             // Получаем текущий элемент listening
             const listeningItem = state.listening[index];
