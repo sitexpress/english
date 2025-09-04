@@ -7,27 +7,32 @@
     min-height: 100vh;
     overflow-x: hidden;
     overflow-y: hidden;
-    /* background-color: #1f90c4; */
-    /* background-color: #7851A9; */
-    background-color: #53377A;
-    /* background-color: #5f3dc4; */
-    background-image: url("/images/img/1.png");
-    background-position: bottom 10px right 20px;
+    /* background-color: #53377A; */
+    background-image: url("/images/img/12.jpg");
+    background-size: cover;
+    /* background-position: bottom 10px right 20px; */
+    background-position: center center;
     background-repeat: no-repeat;
-    background-size: 600px;
+    background-attachment: fixed;
 
     @media (max-width: $mantine-breakpoint-md) {
-        background-image: url("/images/img/1.png");
-        background-position: bottom 10px center;
+        background-image: url("/images/img/12.jpg");
+        /* background-position: bottom 10px center;
         background-repeat: no-repeat;
-        background-size: 300px;
+        background-size: 300px; */
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 
     @media (max-width: $mantine-breakpoint-xs) {
-        background-image: url("/images/img/1.png");
-        background-position: bottom 10px center;
+        background-image: url("/images/img/12.jpg");
+        /* background-position: bottom 10px center;
         background-repeat: no-repeat;
-        background-size: 220px;
+        background-size: 220px; */
+        background-position: center center;
+        background-repeat: no-repeat;
+        background-attachment: fixed;
     }
 }
 
@@ -40,7 +45,7 @@
     min-height: 100vh;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-color: #1f90c4;
+    background-color: #9775fa;
 
 }
 
@@ -56,7 +61,7 @@
     min-height: 100%;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-color: #1f90c4;
+    background-color: #9775fa;
     padding: 20px;
     z-index: 5;
 
@@ -74,7 +79,7 @@
     min-height: 150px;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-color: #1f90c4;
+    background-color: #9775fa;
     padding: 5px;
     transition: min-height 1s ease-in-out, padding 1s ease-in-out;
     z-index: 5;
@@ -94,7 +99,7 @@
     min-height: 110px;
     overflow-x: hidden;
     overflow-y: hidden;
-    background-color: #1f90c4;
+    background-color: #9775fa;
     padding: 5px;
     transition: min-height 1s ease-in-out, padding 1s ease-in-out;
     z-index: 5;
@@ -116,7 +121,6 @@
     font-weight: 700;
     font-size: 30px;
     letter-spacing: -1px;
-    /* color: #feca1d; */
     text-align: center;
     z-index: 1;
     font-family:

@@ -11,7 +11,6 @@
     var("#53377A") 100% */
   
   background-color: #53377A;
-  color: white;
   padding: calc(var(--mantine-spacing-xl) * 1.5);
   border-radius: var(--mantine-radius-md);
   max-width: 1500px;

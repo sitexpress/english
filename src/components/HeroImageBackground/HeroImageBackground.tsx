@@ -9,7 +9,7 @@ import { FinalStart } from "../Final/FinalStart";
 import { useEffect, useState } from "react";
 import CountdownTimer from "../CountdownTimer/CountdownTimer";
 import { Result } from "@/features/formSlice";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { modals } from "@mantine/modals";
 import { useAppSelector } from "@/store/hooks";
 
@@ -180,7 +180,7 @@ export const HeroImageBackground: React.FC<HeroImageBackgroundType> = ({
                     </Flex>
                 ) : (
                     <>
-                        <Title className={classes.title} ta="center" mt={50}>
+                        <Title className={classes.title} ta="center" mt={50} c="white">
                             Онлайн тест{" "}
                         </Title>
 

@@ -133,11 +133,12 @@ export function Header() {
                             size="xl"
                             fw={700}
                             fs="32px"
-                            c={
-                                scrollPosition === 0
-                                    ? "light-dark(var(--mantine-color-white), var(--mantine-color-white))"
-                                    : "light-dark(var(--mantine-color-black), var(--mantine-color-white))"
-                            }
+                            c="white"
+                            // c={
+                            //     scrollPosition === 0
+                            //         ? "light-dark(var(--mantine-color-white), var(--mantine-color-white))"
+                            //         : "light-dark(var(--mantine-color-black), var(--mantine-color-white))"
+                            // }
                         >
                             English School
                         </Text>
@@ -166,9 +167,9 @@ export function Header() {
                                         <Box component="span" mr={5}>
                                             Наши курсы
                                         </Box>
-                                        <IconChevronDown
+                                        <IconChevronDown 
                                             size={16}
-                                            color={scrollPosition === 0 ? theme.colors.gray[1] : theme.colors.dark[9]}
+                                            // color={scrollPosition === 0 ? theme.colors.gray[1] : theme.colors.dark[9]}
                                         />
                                     </Center>
                                 </NavLink >
